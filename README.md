@@ -2,4 +2,4 @@
 
 An effective and efficient method for interpreting spatial transcriptomics datasets.
 
-![INSPIRE\_pipeline](demo/overview.pdf)
+![INSPIRE\_pipeline](demo/overview.jpg)
