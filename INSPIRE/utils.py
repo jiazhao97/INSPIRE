@@ -5,6 +5,10 @@ import anndata as ad
 import scipy.sparse
 import os
 from sklearn.metrics import pairwise_distances
+from sklearn.metrics import silhouette_score
+from sklearn.metrics.cluster import adjusted_rand_score
+from sklearn.metrics.cluster import normalized_mutual_info_score
+from annoy import AnnoyIndex
 
 
 def preprocess(adata_st_list, # list of spatial transcriptomics anndata objects
@@ -355,5 +359,154 @@ def prepare_inputs_LGCN(slice_name_list, # list of slice names
     sc.pl.spatial(adata, spot_size=spot_size)
 
     return adata_st_list, adata
+
+
+
+def calculate_ASW(latent_representations, # latent representations of cells or spatial spots
+                  annotations, # annotations for cells or spatial spots
+                 ):
+    ASW = silhouette_score(latent_representations, annotations)
+    return ASW
+
+
+
+def calculate_ARI(annotations, # annotations for cells or spatial spots
+                  spatial_domain_identification, # spatial domains assigned to cells or spatial spots
+                 ):
+    ARI = adjusted_rand_score(annotations, spatial_domain_identification)
+    return ARI
+
+
+
+def calculate_NMI(annotations, # annotations for cells or spatial spots
+                  spatial_domain_identification, # spatial domains assigned to cells or spatial spots
+                 ):
+    NMI = normalized_mutual_info_score(annotations, spatial_domain_identification)
+    return NMI
+
+
+
+def calculate_factor_diversity(basis, #non-negative gene loading matrix
+                               n_top_genes, # number of top genes considered for each spatial factor
+                              ):
+    n_spatial_factors = basis.shape[0]
+    top_gene_factors = np.zeros((n_spatial_factors, n_top_genes))
+    for i in range(n_spatial_factors):
+        top_gene_factors[i,:] = np.argsort(-basis[i,:])[:n_top_genes]
+
+    unique_gene_factors = np.zeros((n_spatial_factors, n_top_genes))
+    for i in range(n_spatial_factors):
+        for j in range(n_top_genes):
+            unique_gene_factors[i,j] = np.sum(top_gene_factors - top_gene_factors[i,j] == 0.) - 1
+
+    factor_diversity = np.mean(np.sum(unique_gene_factors == 0., axis=1) / n_top_genes)
+    return factor_diversity
+
+
+
+def calculate_factor_coherence(basis, #non-negative gene loading matrix
+                               n_top_genes, # number of top genes considered for each spatial factor
+                               gene_counts, # cell/spot by gene count matrix
+                              ):
+    n_spatial_factors = basis.shape[0]
+    top_gene_factors = np.zeros((n_spatial_factors, n_top_genes))
+    for i in range(n_spatial_factors):
+        top_gene_factors[i,:] = np.argsort(-basis[i,:])[:n_top_genes]
+
+    gene_counts[gene_counts < 0] = 0
+    gene_counts[gene_counts > 0] = 1
+
+    npmi = []
+    for i in range(n_spatial_factors):
+        for m in range(n_top_genes):
+            for n in range(m+1, n_top_genes):
+                gene_1 = top_gene_factors[i, m]
+                gene_2 = top_gene_factors[i ,n]
+                co_cnts = gene_counts[:, [int(gene_1), int(gene_2)]]
+                p_joint = np.sum(np.sum(co_cnts, axis=1) == 2) / co_cnts.shape[0]
+                p_1 = np.sum(co_cnts[:,0] == 1) / co_cnts.shape[0]
+                p_2 = np.sum(co_cnts[:,1] == 1) / co_cnts.shape[0]
+                npmi_val = - np.log(p_joint/(p_1*p_2)) / np.log(p_joint)
+                npmi.append(npmi_val)
+    
+    factor_coherence = np.mean(npmi)
+    return factor_coherence
+
+
+
+def best_fit_transform(A, B):
+    '''
+    Calculates the least-squares best-fit transform that maps corresponding points A to B in m spatial dimensions
+    Input:
+      A: Nxm numpy array of corresponding points
+      B: Nxm numpy array of corresponding points
+    Returns:
+      T: (m+1)x(m+1) homogeneous transformation matrix that maps A on to B
+      R: mxm rotation matrix
+      t: mx1 translation vector
+    '''
+
+    assert A.shape == B.shape
+
+    # get number of dimensions
+    m = A.shape[1]
+
+    # translate points to their centroids
+    centroid_A = np.mean(A, axis=0)
+    centroid_B = np.mean(B, axis=0)
+    AA = A - centroid_A
+    BB = B - centroid_B
+
+    # rotation matrix
+    H = np.dot(AA.T, BB)
+    U, S, Vt = np.linalg.svd(H)
+    R = np.dot(Vt.T, U.T)
+
+    # special reflection case
+    if np.linalg.det(R) < 0:
+       Vt[m-1,:] *= -1
+       R = np.dot(Vt.T, U.T)
+
+    # translation
+    t = centroid_B.T - np.dot(R,centroid_A.T)
+
+    # homogeneous transformation
+    T = np.identity(m+1)
+    T[:m, :m] = R
+    T[:m, m] = t
+
+    return T, R, t
+
+
+
+def transform(point_cloud, T):
+    point_cloud_align = np.ones((point_cloud.shape[0], 3))
+    point_cloud_align[:,0:2] = np.copy(point_cloud)
+    point_cloud_align = np.dot(T, point_cloud_align.T).T
+    return point_cloud_align[:, :2]
+
+
+
+def acquire_pairs(X, Y, k=30, metric='angular'):
+    f = X.shape[1]
+    t1 = AnnoyIndex(f, metric)
+    t2 = AnnoyIndex(f, metric)
+    for i in range(len(X)):
+        t1.add_item(i, X[i])
+    for i in range(len(Y)):
+        t2.add_item(i, Y[i])
+    t1.build(10)
+    t2.build(10)
+
+    mnn_mat = np.bool_(np.zeros((len(X), len(Y))))
+    sorted_mat = np.array([t2.get_nns_by_vector(item, k) for item in X])
+    for i in range(len(sorted_mat)):
+        mnn_mat[i,sorted_mat[i]] = True
+    _ = np.bool_(np.zeros((len(X), len(Y))))
+    sorted_mat = np.array([t1.get_nns_by_vector(item, k) for item in Y])
+    for i in range(len(sorted_mat)):
+        _[sorted_mat[i],i] = True
+    mnn_mat = np.logical_and(_, mnn_mat).astype(int)
+    return mnn_mat
 
 
