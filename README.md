@@ -13,7 +13,7 @@ INSPIRE takes gene expression count matrices and spatial coordinates from multip
 By integrating multiple ST datasets with INSPIRE, users can:
 * Identify spatial trajectories and major spatial regions consistently across datasets using latent representations of cells or spatial spots.
 * Reveal detailed tissue architectures, spatial distributions of cell types, and organizations of biological processes across slices using non-negative spatial factors for cells or spatial spots.
-* Detect spatial variable genes, identify gene programs associated with specific detailed spatial organizations in tissues, and conduct pathway enrichment analysis using non-negative gene loadings.
+* Detect spatial variable genes, identify gene programs associated with specific spatial organizations in tissues, and conduct pathway enrichment analysis using non-negative gene loadings.
 
 
 ## Installation
