@@ -30,3 +30,5 @@ In our manuscript, we show that INSPIRE can be applied to
 * 
 * Integrate multiple ST slices collected from different views of a complex tissue, where spatial structures only partially overlap, to create a comprehensive atlas.
 * Integrate 
+
+## Reference
