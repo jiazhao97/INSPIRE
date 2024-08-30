@@ -6,7 +6,7 @@ An effective and efficient method for jointly interpreting multiple spatial tran
 
 
 ## Installation
-* Portal can be downloaded from GitHub and installed:
+* Portal can be downloaded from GitHub:
 ```bash
 git clone https://github.com/jiazhao97/INSPIRE.git
 cd INSPIRE
