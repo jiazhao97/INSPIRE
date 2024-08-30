@@ -1,8 +1,6 @@
 # INSPIRE
 
-*INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources*
-
-An effective method for integrating and interpreting multiple spatial transcriptomics datasets.
+INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources
 
 ![INSPIRE\_pipeline](demo/overview.jpg)
 
