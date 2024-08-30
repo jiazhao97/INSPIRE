@@ -6,12 +6,12 @@ An effective and efficient method for joint analyses of multiple spatial transcr
 
 ![INSPIRE\_pipeline](demo/overview.jpg)
 
-We develop INSPIRE, a deep learning-based method for integrating and interpreting multiple spatial transcriptomics (ST) datasets from diverse sources. INSPIRE takes gene expression count matrices and spatial coordinates from multiple ST slices as input. It provides three sets of outputs: latent representations of cells or spatial spots, non-negative spatial factors on cells or spatial spots, and non-negative gene loadings shared among datasets.
+We develop INSPIRE, a deep learning-based method for integrating and interpreting multiple spatial transcriptomics (ST) datasets from diverse sources. INSPIRE takes gene expression count matrices and spatial coordinates from multiple ST slices as input, and generates three key outputs:latent representations of cells or spatial spots, non-negative spatial factors for cells or spatial spots, and non-negative gene loadings shared among datasets.
 
-Once multiple ST datasets are integrated by INSPIRE, users can:
+By integrating multiple ST datasets with INSPIRE, users can:
 * Identify spatial trajectories and major spatial regions consistently across datasets using latent representations of cells or spatial spots.
-* Discover detialed tissue architectures, spatial distributions of cell types, and the organization of biological processes across slices using non-negative spatial factors on cells or spatial spots.
-* Detect spatial variable genes, identify gene programs associated with the detailed spatial organizations in tissues, and perform pathway enrichment analysis using non-negative gene loadings.
+* Reveal detialed tissue architectures, spatial distributions of cell types, and organizations of biological processes across slices using non-negative spatial factors for cells or spatial spots.
+* Detect spatial variable genes, identify gene programs associated with specific detailed spatial organizations in tissues, and conduct pathway enrichment analysis using non-negative gene loadings.
 
 
 ## Installation
