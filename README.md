@@ -10,7 +10,7 @@ We develop INSPIRE, a deep learning-based method for integrating and interpretin
 
 Once multiple ST datasets are integrated by INSPIRE, users can:
 * Identify spatial trajectories and major spatial regions consistently across datasets using latent representations of cells or spatial spots.
-* Discover detialed tissue architectures, spatial distributions of cell types, and the organization of biological processes using non-negative spatial factors on cells or spatial spots.
+* Discover detialed tissue architectures, spatial distributions of cell types, and the organization of biological processes across datasets using non-negative spatial factors on cells or spatial spots.
 * Detect spatial variable genes, identify gene programs associated with the detailed spatial organizations in tissues, and perform pathway enrichment analysis using non-negative gene loadings.
 
 
