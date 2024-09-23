@@ -12,11 +12,11 @@ INSPIRE takes gene expression count matrices and spatial coordinates from multip
 
 By integrating multiple ST datasets with INSPIRE, users can:
 * Identify spatial trajectories and major spatial regions consistently across datasets using latent representations of cells or spatial spots.
-* Reveal detailed tissue architectures, spatial distributions of cell types, and organizations of biological processes in tissues across slices using non-negative spatial factors for cells or spatial spots.
+* Reveal detailed tissue architectures, spatial distributions of cell types, and organizations of biological processes in tissues across slices using non-negative spatial factors of cells or spatial spots.
 * Detect spatially variable genes, identify gene programs associated with specific spatial architectures in tissues, and conduct pathway enrichment analysis using non-negative gene loadings.
 
 ## Installation
-* Portal can be downloaded from GitHub:
+* INSPIRE can be downloaded from GitHub:
 ```bash
 git clone https://github.com/jiazhao97/INSPIRE.git
 cd INSPIRE
