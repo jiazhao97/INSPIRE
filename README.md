@@ -4,7 +4,7 @@
 
 An effective and efficient method for joint analyses of multiple spatial transcriptomics datasets.
 
-![INSPIRE\_pipeline](demo/overview.jpg)
+![INSPIRE\_pipeline](demo/mainfig_overview.jpg)
 
 We develop INSPIRE, a deep learning-based method for integrating and interpreting multiple spatial transcriptomics (ST) datasets from diverse sources. It integrates information across slices in a shared latent space, where meaningful biological variations from the input slices are preserved, while complex unwanted variations are eliminated. Utilizing this shared latent space, INSPIRE achieves an integrated NMF on gene expressions across slices, decomposing biological signals in different slices into consistent and interpretable spatial factors with associated gene programs. These inferred spatial factors often correspond to distinct cell populations and biological processes within the analyzed tissues.
 
