@@ -33,4 +33,4 @@ In our manuscript, we demonstrate that INSPIRE is applicable to a range of biolo
 * Integration of multiple whole-embryo ST slices collected across various developmental stages to unravel complex dynamic changes during embryonic development.
 * Integration of multiple adjacent ST slices along an axis to reconstruct 3D structures of organs or entire organisms, offering deeper insights beyond traditional 2D analyses.
 
-We provide tutorials and codes for reproducing the experiments of our paper at [this tutorial website](https://inspire-tutorial.readthedocs.io/en/latest).
+We provide tutorials and codes for reproducing the experiments of our paper at [this tutorial website](https://inspire-tutorial.readthedocs.io/en/latest/index.html#).
