@@ -34,3 +34,7 @@ In our manuscript, we demonstrate that INSPIRE is applicable to a range of biolo
 * Integration of multiple adjacent ST slices along an axis to reconstruct 3D structures of organs or entire organisms, offering deeper insights beyond traditional 2D analyses.
 
 We provide tutorials and codes for reproducing the experiments of our paper at [this tutorial website](https://inspire-tutorial.readthedocs.io/en/latest/index.html#).
+
+## Reference
+
+Jia Zhao, Xiangyu Zhang, Gefei Wang, Yingxin Lin, Tianyu Liu, Rui B. Chang, Hongyu Zhao. INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources. Preprint. 2024. [https://doi.org/10.1101/2024.09.23.614539](https://doi.org/10.1101/2024.09.23.614539).
