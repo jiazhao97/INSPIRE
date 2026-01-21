@@ -1,4 +1,5 @@
 # INSPIRE
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18330972.svg)](https://doi.org/10.5281/zenodo.18330972)
 
 *INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources*
