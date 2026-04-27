@@ -2,9 +2,13 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18330972.svg)](https://doi.org/10.5281/zenodo.18330972)
 
-*INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources*
+*Interpretable, flexible and spatially aware integration of multiple spatial transcriptomics datasets from diverse sources*
 
 An effective and efficient method for joint analyses of multiple spatial transcriptomics datasets.
+
+Check out our manuscript in Nature Genetics:
++ [Nature Genetics website](https://www.nature.com/articles/s41588-026-02579-x)
++ [Preprint in bioRxiv](https://www.biorxiv.org/content/10.1101/2024.09.23.614539v1)
 
 ![INSPIRE\_pipeline](demo/overview.jpg)
 
@@ -45,6 +49,6 @@ In our manuscript, we demonstrate that INSPIRE is applicable to a range of biolo
 
 We provide tutorials and codes for reproducing the experiments of our paper at [this tutorial website](https://inspire-tutorial.readthedocs.io/en/latest/index.html#).
 
-## Reference
+## Citation
 
-Jia Zhao, Xiangyu Zhang, Gefei Wang, Yingxin Lin, Tianyu Liu, Rui B. Chang, Hongyu Zhao. INSPIRE: interpretable, flexible and spatially-aware integration of multiple spatial transcriptomics datasets from diverse sources. Preprint. 2024. [https://doi.org/10.1101/2024.09.23.614539](https://doi.org/10.1101/2024.09.23.614539).
+Jia Zhao, Xiangyu Zhang, Gefei Wang, Yingxin Lin, Tianyu Liu, Rui B. Chang, Hongyu Zhao. Interpretable, flexible and spatially aware integration of multiple spatial transcriptomics datasets from diverse sources. Nature Genetics (2026).
