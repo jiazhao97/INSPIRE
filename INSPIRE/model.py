@@ -260,6 +260,9 @@ class Model_LGCN():
                  hidden_dims=[512,32], # dimensionalities of hidden layers in "IntegrationNet"
                  coef_recon=1.0, # coefficient of reconstruction loss
                  coef_geom=0.02, # coefficient of geometry loss
+                 coef_fe=1.0, # coefficient of auto-encoder loss for features
+                 coef_gan=1.0,  # coefficient of GAN loss
+                 coef_beta=1.0, # coefficient of topic proportion penalty (Dirichlet distribution prior)
                  use_margin=True, # whether use the margin design in discriminators
                  lr_d=5e-4, # learning rate for training "DiscriminatorNet"
                  different_platforms=False, # whether integrate datasets across different platforms
@@ -275,9 +278,9 @@ class Model_LGCN():
         self.weight_decay_d = 1e-4 # weight decay for training "DiscriminatorNet"
         self.step_interval = 500 # interval of steps for showing objective values
 
-        self.coef_fe = 1.0 # coefficient of auto-encoder loss for features
-        self.coef_beta = 1.0 # coefficient of topic proportion penalty (Dirichlet distribution prior)
-        self.coef_gan = 1.0 # coefficient of GAN loss
+        self.coef_fe = coef_fe
+        self.coef_gan = coef_gan
+        self.coef_beta = coef_beta
 
         self.n_spatial_factors = n_spatial_factors
         self.n_training_steps = n_training_steps
