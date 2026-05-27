@@ -18,6 +18,9 @@ class Model_GAT():
                  hidden_dims=[512,32], # dimensionalities of hidden layers in "IntegrationNet"
                  coef_recon=1.0, # coefficient of reconstruction loss
                  coef_geom=0.02, # coefficient of geometry loss
+                 coef_fe=1.0, # coefficient of auto-encoder loss for features
+                 coef_gan=1.0,  # coefficient of GAN loss
+                 coef_beta=1.0, # coefficient of topic proportion penalty (Dirichlet distribution prior)
                  use_margin=True, # whether use the margin design in discriminators
                  margin_warmup_step=100, # margin will be activated after #margin_warmup_step steps
                  lr_d=5e-4, # learning rate for training "DiscriminatorNet"
@@ -34,9 +37,13 @@ class Model_GAT():
         self.weight_decay_d = 1e-4 # weight decay for training "DiscriminatorNet"
         self.step_interval = 500 # interval of steps for showing objective values
 
-        self.coef_fe = 1.0 # coefficient of auto-encoder loss for features
-        self.coef_beta = 1.0 # coefficient of topic proportion penalty (Dirichlet distribution prior)
-        self.coef_gan = 1.0 # coefficient of GAN loss
+        self.coef_fe = coef_fe
+        self.coef_gan = coef_gan
+        self.coef_beta = coef_beta
+
+        if self.n_slices > 10:
+            self.coef_gan = self.coef_gan * 2
+            self.coef_beta = self.coef_beta * 10
 
         self.n_spatial_factors = n_spatial_factors
         self.n_training_steps = n_training_steps
