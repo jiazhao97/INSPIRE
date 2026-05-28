@@ -56,7 +56,7 @@ We provide instructions for users to get a quick start, including annotated demo
 The default parameter settings work well in general. We also enable tuning of these parameters to achieve a better performance.
 
 * For data integration: increasing `coef_gan` can help enforce stronger multi-section integration in the shared latent space.
-* For spatial factor learning: we suggest choosing 10 ≤ `n_spatial_factors` ≤ 20 for a tissue region, 20 ≤ `n_spatial_factors` ≤ 40 for a whole organ, and 40 ≤ `n_spatial_factors` ≤ 60 for a whole organism; increasing 'coef_beta` often enforce a higher degree of spatial factor divergence.
+* For spatial factor learning: we suggest choosing 10 ≤ `n_spatial_factors` ≤ 20 for a tissue region, 20 ≤ `n_spatial_factors` ≤ 40 for a whole organ, and 40 ≤ `n_spatial_factors` ≤ 60 for a whole organism; increasing 'coef_beta` can enforce a higher degree of spatial factor divergence.
 
 ## Citation
 
