@@ -32,7 +32,7 @@ conda activate INSPIRE
 ## Tutorials and reproducibility
 
 In our manuscript, we demonstrate that INSPIRE is applicable to a range of biologically significant integrative analysis scenarios:
-* Integration of multiple ST sections from biological replicate samples, leveraging information across sections to enhance the accuracy of downstream analysis.
+* Integration of multiple ST sections from biological replicate DLPFC samples, leveraging information across sections to enhance the accuracy of downstream analysis.
 * Integration of multiple ST sections offering complementary views of complex tissue, where spatial structures only partially overlap, to construct a comprehensive spatial atlas.
 * Integration of multiple ST sections from distinct ST technologies, harnessing the unique strengths of each to deepen biological insights.
 * Integration of ST sections under different biological conditions, depicting meaningful biological signals unique to certain conditions.
