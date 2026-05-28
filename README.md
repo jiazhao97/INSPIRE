@@ -29,13 +29,6 @@ cd INSPIRE
 conda env update --f environment.yml
 conda activate INSPIRE
 ```
-
-## Quick start and usage instructions
-Starting with raw gene expression count matrices and spatial coordinate matrics obtained from multiple tissue sections, each formatted as an individual AnnData object, INSPIRE provides two integration options: one based on graph attention networks (GATs) and the other on lightweight graph convolutional networks (LGCNs). For tissue sections profiled using low-resolution platforms such as Visium or ST, we recommend employing the graph attention network variant of INSPIRE to leverage the attention mechanism for improved modeling accuracy. In contrast, for high-resolution datasets, the lightweight graph convolutional network variant is recommended, as it provides enhanced computational efficiency and scalability for large-scale analyses.
-
-We provide instructions for users to get a quick start, including annotated demos and example data: [Using INSPIRE with graph attention networks (GATs)](https://inspire-tutorial.readthedocs.io/en/latest/examples/INSPIRE_GAT.html), [Using INSPIRE with lightweight graph convolutional networks (LGCNs)](https://inspire-tutorial.readthedocs.io/en/latest/examples/INSPIRE_LGCN.html).
-
-
 ## Tutorials and reproducibility
 
 In our manuscript, we demonstrate that INSPIRE is applicable to a range of biologically significant integrative analysis scenarios:
@@ -49,6 +42,22 @@ In our manuscript, we demonstrate that INSPIRE is applicable to a range of biolo
 
 We provide tutorials and codes for reproducing the experiments of our paper at [this tutorial website](https://inspire-tutorial.readthedocs.io/en/latest/index.html#).
 
+## Quick start and usage instructions
+Starting with raw gene expression count matrices and spatial coordinate matrics obtained from multiple tissue sections, each formatted as an individual AnnData object, INSPIRE provides two integration options: one based on graph attention networks (GATs) and the other on lightweight graph convolutional networks (LGCNs). For tissue sections profiled using low-resolution platforms such as Visium or ST, we recommend employing the graph attention network variant of INSPIRE to leverage the attention mechanism for improved modeling accuracy. In contrast, for high-resolution datasets, the lightweight graph convolutional network variant is recommended, as it provides enhanced computational efficiency and scalability for large-scale analyses.
+
+We provide instructions for users to get a quick start, including annotated demos and example data: [Using INSPIRE with graph attention networks (GATs)](https://inspire-tutorial.readthedocs.io/en/latest/examples/INSPIRE_GAT.html), [Using INSPIRE with lightweight graph convolutional networks (LGCNs)](https://inspire-tutorial.readthedocs.io/en/latest/examples/INSPIRE_LGCN.html).
+
+#### Parameters in `INSPIRE.model.Model_GAT()` and `INSPIRE.model.Model_LGCN()`:
+* `n_spatial_factors`: Number of spatial factors in biologically interpretable dimensionality reduction.
+* `n_training_steps`: Number of training steps. *Default*: `10000`.
+* `coef_gan`: Coefficient controling the strength of data integration. *Default*: `1.0`.
+* `coef_beta`: Coefficient preventing convergence to local optima (mode collapse) during spatial factor learning. *Default*: `1.0`.
+
+The default parameter settings work well in general. We also enable tuning of these parameters to achieve a better performance.
+
+* For data integration: increasing `coef_gan` can help enforce stronger multi-section integration in the shared latent space.
+* For spatial factor learning: we suggest choosing 10 ≤ `n_spatial_factors` ≤ 20 for a tissue region, 20 ≤ `n_spatial_factors` ≤ 40 for a whole organ, and 40 ≤ `n_spatial_factors` ≤ 60 for a whole organism; increasing 'coef_beta` often enforce a higher degree of spatial factor divergence.
+
 ## Citation
 
-Jia Zhao, Xiangyu Zhang, Gefei Wang, Yingxin Lin, Tianyu Liu, Rui B. Chang, Hongyu Zhao. Interpretable, flexible and spatially aware integration of multiple spatial transcriptomics datasets from diverse sources. Nature Genetics (2026).
+Jia Zhao, Xiangyu Zhang, Gefei Wang, Yingxin Lin, Tianyu Liu, Rui B. Chang, Hongyu Zhao. Interpretable, flexible and spatially aware integration of multiple spatial transcriptomics datasets from diverse sources. Nature Genetics 58(5), 1138-1150 (2026).
